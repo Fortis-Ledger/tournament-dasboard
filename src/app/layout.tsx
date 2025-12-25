@@ -15,6 +15,20 @@ export const metadata: Metadata = {
     title: 'FortisArena - Join Tournament',
     description: 'Join the official FortisArena tournament',
     type: 'website',
+    images: [
+      {
+        url: '/twitter.png',
+        width: 1200,
+        height: 630,
+        alt: 'FortisArena Tournament',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FortisArena - Join Tournament',
+    description: 'Join the official FortisArena tournament',
+    images: ['/twitter.png'],
   },
 }
 
