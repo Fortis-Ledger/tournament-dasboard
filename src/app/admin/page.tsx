@@ -1,22 +1,18 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Users,
-    MousePointerClick,
     ToggleLeft,
     ToggleRight,
-    TrendingUp,
     Gamepad2,
     RefreshCw,
     Plus,
     Trash2,
     LogOut,
-    Link,
     Edit3,
     Eye,
-    Lock,
     Trophy,
     X,
     Calendar,
@@ -25,7 +21,10 @@ import {
     FileText,
     Settings,
     Upload,
-    Loader2
+    Loader2,
+    Lock,
+    Link,
+    MousePointerClick
 } from "lucide-react";
 import { Tournament, CreateTournamentInput, GAME_MODES, DEFAULT_LINKS, PrizePosition } from "@/lib/types";
 import {
@@ -40,6 +39,7 @@ import {
     uploadTournamentImage,
 } from "@/lib/db";
 import { PrizeDistributionModal } from "@/components/PrizeDistributionModal";
+import Image from "next/image";
 
 // Login Component
 function AdminLogin({ onLogin }: { onLogin: () => void }) {
@@ -196,7 +196,7 @@ function TournamentFormModal({
                             className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium transition-colors ${activeTab === tab.id
                                 ? 'text-primary border-b-2 border-primary bg-primary/5'
                                 : 'text-white/50 hover:text-white/70'
-                                }`}
+                                } `}
                         >
                             <tab.icon className="w-4 h-4" />
                             {tab.label}
@@ -288,11 +288,12 @@ function TournamentFormModal({
 
                                     {/* Preview */}
                                     {formData.image_url && (
-                                        <div className="relative">
-                                            <img
+                                        <div className="relative h-32 w-full">
+                                            <Image
                                                 src={formData.image_url}
                                                 alt="Preview"
-                                                className="w-full h-32 rounded-xl object-cover"
+                                                fill
+                                                className="rounded-xl object-cover"
                                             />
                                             <button
                                                 type="button"
@@ -482,7 +483,7 @@ function TournamentFormModal({
                 </div>
             </motion.div>
 
-            {/* Prize Distribution Modal - Outside the clipped container */}
+            {/* Prize Distribution Modal-Outside the clipped container */}
             <PrizeDistributionModal
                 isOpen={showPrizeModal}
                 onClose={() => setShowPrizeModal(false)}
@@ -518,13 +519,13 @@ function TournamentRow({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className={`glass rounded-xl p-4 ${tournament.is_active ? "ring-2 ring-primary" : ""}`}
+            className={`glass rounded-xl p-4 ${tournament.is_active ? "ring-2 ring-primary" : ""} `}
         >
             <div className="flex items-center gap-4">
                 {/* Image */}
-                <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+                <div className="relative w-16 h-16 rounded-lg overflow-hidden shrink-0">
                     {tournament.image_url ? (
-                        <img src={tournament.image_url} alt={tournament.name} className="w-full h-full object-cover" />
+                        <Image src={tournament.image_url} alt={tournament.name} fill className="object-cover" />
                     ) : (
                         <div className="w-full h-full bg-primary/20 flex items-center justify-center">
                             <Gamepad2 className="w-6 h-6 text-primary" />
@@ -540,7 +541,7 @@ function TournamentRow({
                             <span className="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary shrink-0">Active</span>
                         )}
                     </div>
-                    <p className="text-sm text-white/50 mb-1">{tournament.game_name} • {tournament.mode.toUpperCase()}</p>
+                    <p className="text-sm text-white/50 mb-1">{tournament.game_name} â€¢ {tournament.mode.toUpperCase()}</p>
                     <div className="flex items-center gap-4 text-xs text-white/40">
                         <span>Rs. {tournament.total_prize_pool.toLocaleString()} Pool</span>
                         <span>{tournament.registered_count}/{tournament.max_slots} Slots</span>
@@ -565,7 +566,7 @@ function TournamentRow({
                         className={`p-2 rounded-lg transition-colors ${tournament.is_open
                             ? "bg-green-500/20 hover:bg-green-500/30 text-green-400"
                             : "bg-white/5 hover:bg-white/10 text-white/50"
-                            }`}
+                            } `}
                         title={tournament.is_open ? "Open" : "Closed"}
                     >
                         {tournament.is_open ? <ToggleRight className="w-4 h-4" /> : <ToggleLeft className="w-4 h-4" />}
@@ -675,7 +676,7 @@ export default function AdminDashboard() {
                     className="flex items-center justify-between mb-8"
                 >
                     <div className="flex items-center gap-3">
-                        <img src="/icon.svg" alt="FortisArena" className="w-8 h-8" />
+                        <Image src="/icon.svg" alt="FortisArena" width={32} height={32} className="w-8 h-8" priority />
                         <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
                     </div>
                     <div className="flex items-center gap-3">
@@ -784,7 +785,7 @@ export default function AdminDashboard() {
                     </div>
                 )}
 
-                <p className="text-center text-white/30 text-xs mt-8">FortisArena Admin • Password protected</p>
+                <p className="text-center text-white/30 text-xs mt-8">FortisArena Admin â€¢ Password protected</p>
             </div>
 
             {/* Create Modal */}

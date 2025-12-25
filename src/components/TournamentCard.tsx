@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Calendar, Users, Trophy, Clock, DollarSign, Gamepad2 } from "lucide-react";
 import { Tournament } from "@/lib/types";
 import Link from "next/link";
+import Image from "next/image";
 
 interface TournamentCardProps {
     tournament: Tournament;
@@ -44,10 +45,11 @@ export function TournamentCard({ tournament, index = 0 }: TournamentCardProps) {
             {/* Image */}
             <div className="relative h-48 overflow-hidden">
                 {tournament.image_url ? (
-                    <img
+                    <Image
                         src={tournament.image_url}
                         alt={tournament.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                 ) : (
                     <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">

@@ -9,13 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^7.2.0",
     "@supabase/supabase-js": "^2.89.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",
     "next": "14.0.0",
-    "prisma": "^7.2.0",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^3.4.0"
@@ -25,7 +23,6 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
-    "dotenv": "^17.2.3",
     "eslint": "^8",
     "eslint-config-next": "14.0.0",
     "postcss": "^8",

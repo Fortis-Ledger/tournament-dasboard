@@ -24,6 +24,7 @@ import { Tournament } from "@/lib/types";
 import { getTournamentById, incrementStat } from "@/lib/db";
 import Link from "next/link";
 import { FestiveEffects } from "@/components/FestiveEffects";
+import Image from "next/image";
 
 interface PageProps {
     params: { id: string };
@@ -154,12 +155,21 @@ export default function TournamentJoinPage({ params }: PageProps) {
             <div className="max-w-4xl mx-auto pt-16">
                 {/* 2. Premium Hero Banner */}
                 <div className="relative aspect-[21/9] md:aspect-[3/1] w-full overflow-hidden">
+                    {tournament.image_url ? (
+                        <Image
+                            src={tournament.image_url}
+                            alt={tournament.name}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">
+                            <Gamepad2 className="w-20 h-20 text-white/20" />
+                        </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
-                    <img
-                        src={tournament.image_url || '/icon.svg'}
-                        alt={tournament.name}
-                        className="w-full h-full object-cover"
-                    />
+
                     <div className="absolute bottom-6 left-6 right-6 z-20">
                         <div className="flex flex-wrap gap-2 mb-3">
                             <span className="px-2 py-0.5 md:px-3 md:py-1 rounded-full bg-primary/20 text-primary text-[10px] md:text-xs font-bold border border-primary/30 uppercase tracking-tighter">
@@ -302,7 +312,7 @@ export default function TournamentJoinPage({ params }: PageProps) {
                                     ) : (
                                         <div className="text-center py-10 text-white/30">
                                             <Trophy className="w-12 h-12 mx-auto mb-3 opacity-20" />
-                                            <p>Prize details haven't been shared yet.</p>
+                                            <p>Prize details haven&apos;t been shared yet.</p>
                                         </div>
                                     )}
                                 </div>

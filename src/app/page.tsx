@@ -7,6 +7,7 @@ import { Tournament } from "@/lib/types";
 import { getOpenTournaments } from "@/lib/db";
 import { TournamentCard } from "@/components/TournamentCard";
 import { FestiveEffects, NewYearBanner } from "@/components/FestiveEffects";
+import Image from "next/image";
 
 export default function HomePage() {
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
@@ -48,7 +49,13 @@ export default function HomePage() {
           className="text-center mb-8 sm:mb-10"
         >
           <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-            <img src="/icon.svg" alt="FortisArena" className="w-10 h-10 sm:w-14 sm:h-14 drop-shadow-[0_0_10px_rgba(147,51,234,0.5)]" />
+            <Image
+              src="/icon.svg"
+              alt="FortisArena"
+              width={56}
+              height={56}
+              className="w-10 h-10 sm:w-14 sm:h-14 drop-shadow-[0_0_10px_rgba(147,51,234,0.5)]"
+            />
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black italic uppercase text-white tracking-tighter">FortisArena</h1>
           </div>
 
@@ -122,7 +129,7 @@ export default function HomePage() {
             className="text-center py-16"
           >
             <Search className="w-16 h-16 mx-auto mb-4 text-white/20" />
-            <p className="text-white/50">No tournaments found matching "{searchQuery}"</p>
+            <p className="text-white/50">No tournaments found matching &quot;{searchQuery}&quot;</p>
           </motion.div>
         ) : (
           <motion.div
